@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Shop Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card {
+      margin-bottom: 20px;
+    }
+    .charts {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .chart-container {
+      flex: 1 1 48%;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+<div class="container py-4">
+  <h1 class="mb-4 text-center">Pet Shop Dashboard</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pets Information</h5>
+          <p class="card-text">Total Pets: 50<br>Types: Dogs, Cats, Birds, Rabbits</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Services Offered</h5>
+          <p class="card-text">Grooming, Vaccination, Adoption, Boarding</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Pets Data</h5>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr><th>Name</th><th>Type</th><th>Age</th><th>Price (Birr)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bella</td><td>Dog</td><td>2</td><td>3000</td></tr>
+              <tr><td>Milo</td><td>Cat</td><td>1</td><td>1500</td></tr>
+              <tr><td>Kiwi</td><td>Bird</td><td>1</td><td>500</td></tr>
+              <tr><td>Thumper</td><td>Rabbit</td><td>3</td><td>700</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <canvas id="pieChart" height="300"></canvas>
+    </div>
+  </div>
+
+  <div class="charts mt-4">
+    <div class="chart-container">
+      <canvas id="lineChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="barChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pieCtx = document.getElementById('pieChart').getContext('2d');
+  new Chart(pieCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Dogs', 'Cats', 'Birds', 'Rabbits'],
+      datasets: [{
+        data: [20, 15, 10, 5],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0']
+      }]
+    }
+  });
+
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+      datasets: [{
+        label: 'Average Price Trend (Birr)',
+        data: [2000, 2500, 2200, 3000],
+        borderColor: '#36a2eb',
+        backgroundColor: 'rgba(54,162,235,0.2)',
+        fill: true
+      }]
+    }
+  });
+
+  const barCtx = document.getElementById('barChart').getContext('2d');
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Bella', 'Milo', 'Kiwi', 'Thumper'],
+      datasets: [{
+        label: 'Price in Birr',
+        data: [3000, 1500, 500, 700],
+        backgroundColor: '#4bc0c0'
+      }]
+    }
+  });
+</script>
+</body>
+</html>
